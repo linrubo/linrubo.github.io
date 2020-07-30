@@ -12,8 +12,9 @@
 		<p>click here!</p>
 		<script>
 			alert(1);
-			document.getElementsByTagName('p').item(0).addEventListener('click', function (event) {
-				alert(event.type)
+			document.querySelector('p').addEventListener('click', function (event) {
+				alert(event.type);
+
 			}, false);
 		</script>
 	</body>
