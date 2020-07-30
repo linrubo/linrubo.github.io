@@ -24,10 +24,11 @@
 	</head>
 
 	<body>
-		<h1>20.730.1905</h1>
+		<h1>20.730.1921</h1>
 		<textarea name="" id="output" cols="30" rows="25"></textarea>
 		<button>Start</button>
 		<script>
+			// reference https://wicg.github.io/netinfo/
 			var output = document.querySelector('#output');
 			var size = Math.round(2090391 / 1024);
 			var timing = [];
@@ -46,13 +47,16 @@
 				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.webp'
 			];
 			var types = {
-				'2g': function (rtt) {
+				'2g': function (rtt, bandwidth) {
+					// 50 > bandwidth < 70
 					return rtt > 1400 && rtt < 2000;
 				},
-				'3g': function (rtt) {
+				'3g': function (rtt, bandwidth) {
+					// 70 > bandwidth < 700
 					return rtt > 270 && rtt < 1400;
 				},
 				'4g': function (rtt, bandwidth) {
+					// 700 > bandwidth
 					return rtt > 0 && rtt < 270 && bandwidth < 12800;
 				},
 				'wifi': function (rtt, bandwidth) {
@@ -82,7 +86,6 @@
 
 				Object.keys(types).some(function (type) {
 					var state = types[type](rtt, bandwidth);
-					console.log(type);
 					if (state) {
 						result.NetType = type;
 					}
