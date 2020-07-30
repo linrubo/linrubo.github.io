@@ -31,7 +31,7 @@
 				xhr.send();
 			};
 
-			alert('20.730.1346');
+			alert('20.730.1350');
 
 			window.addEventListener('popstate', function (event) {
 				var url, title;
@@ -57,7 +57,7 @@
 				event.preventDefault();
 				event.stopPropagation();
 
-				var target = event.target.closest('a');
+				var target = event.target;
 				var href, title;
 
 				if (target) {
