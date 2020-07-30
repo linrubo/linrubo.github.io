@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-		<p>Version 20.730.1407</p>
+		<p>Version 20.730.1425</p>
 		<textarea name="" id="output" cols="30" rows="30">
 		</textarea>
 		<script>
@@ -40,9 +40,11 @@
 					return 'XMLHttpRequest' in window;
 				},
 				storage: function () {
+					localStorage.setItem('name', 'demon');
 					return 'localStorage' in window;
 				},
 				history: function () {
+					history.pushState(null, '', location.href);
 					return 'pushState' in history;
 				}
 			};
