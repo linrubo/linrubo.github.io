@@ -24,7 +24,7 @@
 	</head>
 
 	<body>
-		<h1>20.730.1758</h1>
+		<h1>20.730.1829</h1>
 		<textarea name="" id="output" cols="30" rows="25"></textarea>
 		<button>Start</button>
 		<script>
@@ -32,6 +32,7 @@
 			var size = Math.round(2090391 / 1024);
 			var timing = [];
 			var count = 0;
+			var result = {};
 			var flags = [
 				'DNS+Connection+RTT',
 				'Connection+RTT',
@@ -44,7 +45,18 @@
 				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.jpg',
 				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.webp'
 			];
-			var onload = function (index) {
+			var types = {
+				'2g': function (rtt) {
+					return rtt > 1400 && rtt < 2000;
+				},
+				'3g': function (rtt) {
+					return rtt > 270 && rtt < 1400;
+				},
+				'4g': function (rtt) {
+					return rtt > 0 && rtt < 270;
+				}
+			};
+			var onload = function (index, callback) {
 				return function () {
 					var item = timing[index];
 					item.end = Date.now();
@@ -52,10 +64,22 @@
 
 					count += 1;
 					if (count === list.length) {
-						item.bandwidth = (size / (timing[3].timing - timing[2].timing) * 1000).toFixed(2) + 'kb';
-						output.innerHTML = JSON.stringify(timing, null, 4);
+						callback();
 					}
 				};
+			};
+
+			var logger = function () {
+				result.bandwidth = (size / (timing[3].timing - timing[2].timing) * 1000).toFixed(2) + 'kb';
+
+				Object.keys(types).some(function (type) {
+					result.type = type;
+					return types[type](timing[2].timing);
+				});
+
+				output.innerHTML = JSON.stringify(timing, null, 4);
+				output.innerHTML += '\n';
+				output.innerHTML += JSON.stringify(result, null, 4);
 			};
 
 			document.querySelector('button').addEventListener('click', function () {
@@ -67,7 +91,8 @@
 						flag: flags[index],
 						start: Date.now()
 					};
-					image.onload = onload(index);
+
+					image.onload = onload(index, logger);
 					image.src = item + '?ts=' + ts;
 				});
 			}, false);
