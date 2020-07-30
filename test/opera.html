@@ -7,15 +7,19 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<style type="text/css">
+			p {
+				text-align: center;
+				font-size: 1.2em;
+			}
 			.version {
-				margin-left: 1em;
+				padding: 0 1em;
 				background: #eee;
 			}
 		</style>
 	</head>
 
 	<body>
-		<p>click here!<span class="version">20.730.1310</span></p>
+		<p>click here!<span class="version">20.730.1315</span></p>
 		<script>
 			var request = function (option) {
 				var xhr = new XMLHttpRequest();
@@ -30,7 +34,6 @@
 				xhr.send();
 			};
 
-			alert(1);
 			document.querySelector('p').addEventListener('click', function (event) {
 				alert(event.type);
 				alert('XMLHttpRequest' in window);
