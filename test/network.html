@@ -7,17 +7,25 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<style type="text/css">
+			h1 {
+				text-align: center;
+			}
 			#output {
 				display: block;
 				width: 90%;
-				margin: 0 auto;
+				margin: 1em auto;
+			}
+			button {
+				display: block;
+				margin: 1em auto;
+				font-size: 1.2em;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div>20.730.1738</div>
-		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<h1>20.730.1758</h1>
+		<textarea name="" id="output" cols="30" rows="25"></textarea>
 		<button>Start</button>
 		<script>
 			var output = document.querySelector('#output');
@@ -44,9 +52,8 @@
 
 					count += 1;
 					if (count === list.length) {
+						item.bandwidth = (size / (timing[3].timing - timing[2].timing) * 1000).toFixed(2) + 'kb';
 						output.innerHTML = JSON.stringify(timing, null, 4);
-						output.innerHTML += '\nbandwidth:\n';
-						output.innerHTML += (size / (timing[3].timing - timing[2].timing) * 1000).toFixed(2) + 'kb';
 					}
 				};
 			};
