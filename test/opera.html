@@ -7,20 +7,25 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<style type="text/css">
+			body {
+				margin: 0;
+			}
 			p {
 				text-align: center;
 				font-size: 1.2em;
-			}
-			.version {
-				padding: 0 1em;
+				line-height: 2em;
 				background: #eee;
+				margin: 0;
 			}
 		</style>
 	</head>
 
 	<body>
-		<p>click here!<span class="version">20.730.1322</span></p>
+		<p>Version 20.730.1327</p>
+		<textarea name="" id="output" cols="30" rows="10">
+		</textarea>
 		<script>
+			var output = document.querySelector('#output');
 			var request = function (option) {
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function () {
@@ -40,11 +45,11 @@
 					request({
 						url: '/route/a.html',
 						success: function (response) {
-							alert(response);
+							output.innerHTML = response;
 						}
 					});
 				} catch (e) {
-					alert(e);
+					output.innerHTML = response;
 				}
 			}, false);
 		</script>
