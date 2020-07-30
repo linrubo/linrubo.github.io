@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-		<p>Version <span>20.730.1623</span></p>
+		<p>Version <span>20.730.1639</span></p>
 		<textarea name="" id="output" cols="30" rows="20">
 		</textarea>
 		<script>
@@ -58,7 +58,7 @@
 					return 'connection' in navigator;
 				},
 				performance: function () {
-					return 'performance' in window && window.performance.timing && window.performance.navigation;
+					return 'performance' in window;
 				}
 			};
 			var request = function (option) {
