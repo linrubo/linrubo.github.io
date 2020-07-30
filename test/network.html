@@ -9,11 +9,11 @@
 	</head>
 
 	<body>
-		<div>20.730.1718</div>
+		<div>20.730.1726</div>
 		<textarea name="" id="output" cols="30" rows="10"></textarea>
 		<script>
 			var output = document.querySelector('#output');
-			var size = 2090391 / 1024;
+			var size = Math.round(2090391 / 1024);
 			var timing = [];
 			var count = 0;
 			var flags = [
@@ -37,7 +37,8 @@
 					count += 1;
 					if (count === list.length) {
 						output.innerHTML = JSON.stringify(timing, null, 4);
-						//output.innerHTML += 'bandwidth=' + size / tim
+						output.innerHTML += '\nbandwidth:\n';
+						output.innerHTML += size / (timing[3].timing - timing[2].timing) * 1000;
 					}
 				};
 			};
