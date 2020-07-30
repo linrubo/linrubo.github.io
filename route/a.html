@@ -31,8 +31,6 @@
 				xhr.send();
 			};
 
-			alert('20.730.1350');
-
 			window.addEventListener('popstate', function (event) {
 				var url, title;
 
@@ -54,9 +52,6 @@
 			}, false);
 
 			document.addEventListener('click', function (event) {
-				event.preventDefault();
-				event.stopPropagation();
-
 				var target = event.target;
 				var href, title;
 
@@ -69,6 +64,11 @@
 					href = target.getAttribute('href');
 					title = target.textContent;
 
+					history.pushState({
+						url: href,
+						title: title
+					}, title, href);
+
 					request({
 						url: href,
 						success: function (response) {
@@ -79,8 +79,16 @@
 							}
 						}
 					});
+
+					event.preventDefault();
+					event.stopPropagation();
 				}
 			});
+
+			history.replaceState({
+				url: location.href,
+				title: document.title
+			}, document.title, location.href);
 		</script>
 	</body>
 </html>
