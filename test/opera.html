@@ -29,8 +29,8 @@
 	</head>
 
 	<body>
-		<p>Version 20.730.1433</p>
-		<textarea name="" id="output" cols="30" rows="30">
+		<p>20.730.1440</p>
+		<textarea name="" id="output" cols="30" rows="20">
 		</textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -45,7 +45,7 @@
 				},
 				history: function () {
 					history.pushState(null, '', location.href);
-					return 'pushState' in history;
+					return 'pushState' in history && history.length >= 2;
 				},
 				fetch: function () {
 					return 'fetch' in window;
