@@ -36,13 +36,17 @@
 
 			document.querySelector('p').addEventListener('click', function (event) {
 				alert(event.type);
-				alert('XMLHttpRequest' in window);
-				request({
-					url: '/route/a.html',
-					success: function (response) {
-						alert(response);
-					}
-				});
+				try {
+					alert('XMLHttpRequest' in window);
+					request({
+						url: '/route/a.html',
+						success: function (response) {
+							alert(response);
+						}
+					});
+				} catch (e) {
+					alert(e);
+				}
 			}, false);
 		</script>
 	</body>
