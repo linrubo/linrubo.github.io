@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Network</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	</head>
+
+	<body>
+		<div>20.730.1717</div>
+		<textarea name="" id="output" cols="30" rows="10"></textarea>
+		<script>
+			var output = document.querySelector('#output');
+			var size = 2090391 / 1024;
+			var timing = [];
+			var count = 0;
+			var flag = [
+				'DNS+Connection+RTT',
+				'Connection+RTT',
+				'RTT',
+				'BandWidth'
+			];
+			var list = [
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.jpg',
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.jpg',
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.jpg',
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.webp'
+			];
+			var onload = function (index) {
+				return function () {
+					var item = timing[index];
+					item.end = Date.now();
+					item.timing = item.end - item.start;
+
+					count += 1;
+					if (count === list.length) {
+						output.innerHTML = JSON.stringify(timing, null, 4);
+						//output.innerHTML += 'bandwidth=' + size / tim
+					}
+				};
+			};
+
+			list.forEach(function (item, index) {
+				var ts = Math.random().toString(36).slice(-6);
+				var image = new Image();
+
+				timing[index] = {
+					flag: flags[index],
+					start: Date.now()
+				};
+				image.onload = onload(index);
+				image.src = item + '?ts=' + ts;
+			});
+		</script>
+	</body>
+</html>
