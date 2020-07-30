@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-		<p>Version 20.730.1425</p>
+		<p>Version 20.730.1428</p>
 		<textarea name="" id="output" cols="30" rows="30">
 		</textarea>
 		<script>
@@ -46,6 +46,9 @@
 				history: function () {
 					history.pushState(null, '', location.href);
 					return 'pushState' in history;
+				},
+				fetch: function () {
+					return 'fetch' in window;
 				}
 			};
 			var request = function (option) {
