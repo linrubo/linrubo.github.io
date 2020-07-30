@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-		<p>Version <span>20.730.1639</span></p>
+		<p>Version <span>20.730.1648</span></p>
 		<textarea name="" id="output" cols="30" rows="20">
 		</textarea>
 		<script>
@@ -44,9 +44,7 @@
 					return 'localStorage' in window;
 				},
 				history: function () {
-					history.pushState(null, document.title, '/');
-					history.replaceState(null, document.title, '/');
-					return 'pushState' in history && history.length >= 2;
+					return 'pushState' in history && 'replaceState' in history;
 				},
 				fetch: function () {
 					return 'fetch' in window;
