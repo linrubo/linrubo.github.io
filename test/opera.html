@@ -11,10 +11,29 @@
 	<body>
 		<p>click here!</p>
 		<script>
+			var request = function (option) {
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4) {
+						if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+							option.success(xhr.responseText);
+						}
+					}
+				};
+				xhr.open('GET', option.url, true);
+				xhr.send();
+			};
+
 			alert(1);
 			document.querySelector('p').addEventListener('click', function (event) {
 				alert(event.type);
-
+				alert(XMLHttpRequest in window);
+				request({
+					url: '/route/a.html',
+					success: function (response) {
+						alert(response);
+					}
+				});
 			}, false);
 		</script>
 	</body>
