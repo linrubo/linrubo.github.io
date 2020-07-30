@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-		<p>20.730.1440</p>
+		<p>Version <span>20.730.1445</span></p>
 		<textarea name="" id="output" cols="30" rows="20">
 		</textarea>
 		<script>
@@ -49,6 +49,9 @@
 				},
 				fetch: function () {
 					return 'fetch' in window;
+				},
+				es6: function () {
+					return 'Promise' in window;
 				}
 			};
 			var request = function (option) {
