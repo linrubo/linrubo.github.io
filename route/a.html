@@ -18,6 +18,9 @@
 			</ul>
 		</div>
 		<script>
+			window.addEventListener('error', function (event) {
+				alert(event.message);
+			});
 			var request = function (option) {
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function () {
