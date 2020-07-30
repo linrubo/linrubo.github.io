@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-		<p>Version 20.730.1428</p>
+		<p>Version 20.730.1433</p>
 		<textarea name="" id="output" cols="30" rows="30">
 		</textarea>
 		<script>
@@ -75,6 +75,8 @@
 				});
 				output.innerHTML = JSON.stringify(result, null, 4);
 			}, false);
+
+			output.innerHTML = navigator.userAgent;
 		</script>
 	</body>
 </html>
