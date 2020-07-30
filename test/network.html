@@ -16,8 +16,9 @@
 	</head>
 
 	<body>
-		<div>20.730.1737</div>
+		<div>20.730.1738</div>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<button>Start</button>
 		<script>
 			var output = document.querySelector('#output');
 			var size = Math.round(2090391 / 1024);
@@ -50,17 +51,19 @@
 				};
 			};
 
-			list.forEach(function (item, index) {
-				var ts = Math.random().toString(36).slice(-6);
-				var image = new Image();
+			document.querySelector('button').addEventListener('click', function () {
+				list.forEach(function (item, index) {
+					var ts = Math.random().toString(36).slice(-6);
+					var image = new Image();
 
-				timing[index] = {
-					flag: flags[index],
-					start: Date.now()
-				};
-				image.onload = onload(index);
-				image.src = item + '?ts=' + ts;
-			});
+					timing[index] = {
+						flag: flags[index],
+						start: Date.now()
+					};
+					image.onload = onload(index);
+					image.src = item + '?ts=' + ts;
+				});
+			}, false);
 		</script>
 	</body>
 </html>
