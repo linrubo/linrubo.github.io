@@ -55,6 +55,8 @@
 			}, false);
 
 			document.addEventListener('click', function (event) {
+				event.preventDefault();
+				event.stopPropagation();
 				var target = event.target.closest('a');
 				var href, title;
 
@@ -82,9 +84,6 @@
 							}
 						}
 					});
-
-					event.preventDefault();
-					event.stopPropagation();
 				}
 			});
 
