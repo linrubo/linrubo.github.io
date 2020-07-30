@@ -6,9 +6,15 @@
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			h1 {
+				color: red;
+			}
+		</style>
 	</head>
 
 	<body>
+		<div>20.730.1503</div>
 		<div class="root">
 			<h1>AAA</h1>
 			<ul>
@@ -85,12 +91,10 @@
 				}
 			});
 
-			history.pushState({
+			history.replaceState({
 				url: location.href,
 				title: document.title
 			}, document.title, location.href);
-
-			alert('20.730.1457');
 		</script>
 	</body>
 </html>
