@@ -24,7 +24,7 @@
 	</head>
 
 	<body>
-		<h1>20.730.1829</h1>
+		<h1>20.730.1859</h1>
 		<textarea name="" id="output" cols="30" rows="25"></textarea>
 		<button>Start</button>
 		<script>
@@ -52,8 +52,11 @@
 				'3g': function (rtt) {
 					return rtt > 270 && rtt < 1400;
 				},
-				'4g': function (rtt) {
-					return rtt > 0 && rtt < 270;
+				'4g': function (rtt, bandwidth) {
+					return rtt > 0 && rtt < 270 && bandwidth < 12800;
+				},
+				'wifi': function (rtt, bandwidth) {
+					return rtt > 0 && rtt < 270 && bandwidth > 12800;
 				}
 			};
 			var onload = function (index, callback) {
@@ -70,11 +73,19 @@
 			};
 
 			var logger = function () {
-				result.bandwidth = (size / (timing[3].timing - timing[2].timing) * 1000).toFixed(2) + 'kb';
+				var rtt = timing[2].timing;
+				var bandwidth = Math.round(size / (timing[3].timing - rtt) * 1000);
+
+				result.RTT = rtt;
+				result.BandWidth = bandwidth;
 
 				Object.keys(types).some(function (type) {
-					result.type = type;
-					return types[type](timing[2].timing);
+					var state = types[type](rtt, bandwidth);
+					console.log(type);
+					if (state) {
+						result.NetType = type;
+					}
+					return state;
 				});
 
 				output.innerHTML = JSON.stringify(timing, null, 4);
