@@ -29,11 +29,23 @@
 	</head>
 
 	<body>
-		<p>Version 20.730.1339</p>
+		<p>Version 20.730.1407</p>
 		<textarea name="" id="output" cols="30" rows="30">
 		</textarea>
 		<script>
 			var output = document.querySelector('#output');
+
+			var features = {
+				ajax: function () {
+					return 'XMLHttpRequest' in window;
+				},
+				storage: function () {
+					return 'localStorage' in window;
+				},
+				history: function () {
+					return 'pushState' in history;
+				}
+			};
 			var request = function (option) {
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function () {
@@ -48,17 +60,15 @@
 			};
 
 			document.querySelector('p').addEventListener('click', function (event) {
-				try {
-					alert('XMLHttpRequest' in window);
-					request({
-						url: '/route/a.html',
-						success: function (response) {
-							output.innerHTML = response;
-						}
-					});
-				} catch (e) {
-					output.innerHTML = response;
-				}
+				var result = {};
+				Object.keys(features).forEach(function (key) {
+					try {
+						result[key] = features[key]();
+					} catch (e) {
+						result[key] = false;
+					}
+				});
+				output.innerHTML = JSON.stringify(result, null, 4);
 			}, false);
 		</script>
 	</body>
