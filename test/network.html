@@ -16,7 +16,7 @@
 	</head>
 
 	<body>
-		<div>20.730.1729</div>
+		<div>20.730.1737</div>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -45,7 +45,7 @@
 					if (count === list.length) {
 						output.innerHTML = JSON.stringify(timing, null, 4);
 						output.innerHTML += '\nbandwidth:\n';
-						output.innerHTML += size / (timing[3].timing - timing[2].timing) * 1000;
+						output.innerHTML += (size / (timing[3].timing - timing[2].timing) * 1000).toFixed(2) + 'kb';
 					}
 				};
 			};
