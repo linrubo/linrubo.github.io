@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<title>AAA</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	</head>
+
+	<body>
+		<div class="root">
+			<h1>AAA</h1>
+			<ul>
+				<li><a href="b.html">BBB</a></li>
+				<li><a href="c.html">CCC</a></li>
+				<li><a href="d.html">DDD</a></li>
+			</ul>
+		</div>
+		<script>
+			var request = function (option) {
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4) {
+						if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+							option.success(xhr.responseText);
+						}
+					}
+				};
+				xhr.open('GET', option.url, true);
+				xhr.send();
+			};
+
+			window.addEventListener('popstate', function (event) {
+				var url, title;
+
+				if (event.state) {
+					url = event.state.url;
+					title = event.state.title;
+
+					request({
+						url: url,
+						success: function (response) {
+							var html = response.match(/<div class="root">([\s\S]+)<\/div>/);
+							if (html && html[1]) {
+								document.title = title;
+								document.querySelector('.root').innerHTML = html[1];
+							}
+						}
+					});
+				}
+			}, false);
+
+			document.addEventListener('click', function (event) {
+				var target = event.target.closest('a');
+				var href, title;
+
+				if (target) {
+					if (event.ctrlKey || event.shiftKey || event.metaKey || event.altKey) {
+						return;
+					}
+
+
+					href = target.getAttribute('href');
+					title = target.textContent;
+
+					history.pushState({
+						url: href,
+						title: title
+					}, title, href);
+
+					request({
+						url: href,
+						success: function (response) {
+							var html = response.match(/<div class="root">([\s\S]+)<\/div>/);
+							if (html && html[1]) {
+								document.title = title;
+								document.querySelector('.root').innerHTML = html[1];
+							}
+						}
+					});
+
+					event.preventDefault();
+					event.stopPropagation();
+				}
+			});
+
+			history.replaceState({
+				url: location.href,
+				title: document.title
+			}, document.title, location.href);
+		</script>
+	</body>
+</html>
