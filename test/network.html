@@ -24,7 +24,7 @@
 	</head>
 
 	<body>
-		<h1>20.731.1009</h1>
+		<h1>20.731.1011</h1>
 		<textarea name="" id="output" cols="30" rows="25"></textarea>
 		<button>Start</button>
 		<script>
@@ -98,7 +98,7 @@
 			};
 
 			window.addEventListener('error', function (event) {
-				alert(event);
+				output.innerHTML = event.message;
 			}, false);
 
 			document.querySelector('button').addEventListener('click', function () {
