@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-		<h1>20.731.1444</h1>
+		<h1>20.731.1446</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -56,6 +56,9 @@
 				cookie: function () {
 					document.cookie = '__testcookie__=test';
 					return navigator.cookieEnabled !== undefined && document.cookie.indexOf('__testcookie__=test') !== -1;
+				},
+				sniff: function () {
+					return Object.prototype.toString.call(window.operamini) === "[object OperaMini]"
 				}
 			};
 			var request = function (option) {
