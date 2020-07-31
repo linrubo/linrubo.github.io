@@ -15,18 +15,20 @@
 				width: 90%;
 				margin: 1em auto;
 			}
-			button {
-				display: block;
+			.button {
+				width: 10em;
 				margin: 1em auto;
 				font-size: 1.2em;
+				text-align: center;
+				border: 1px solid #000
 			}
 		</style>
 	</head>
 
 	<body>
-		<h1>20.731.1011</h1>
-		<textarea name="" id="output" cols="30" rows="25"></textarea>
-		<button>Start</button>
+		<h1>20.731.1146</h1>
+		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<div class="button">Start</div>
 		<script>
 			// reference https://wicg.github.io/netinfo/
 			var output = document.querySelector('#output');
@@ -101,7 +103,7 @@
 				output.innerHTML = event.message;
 			}, false);
 
-			document.querySelector('button').addEventListener('click', function () {
+			document.querySelector('.button').addEventListener('click', function () {
 				list.forEach(function (item, index) {
 					var ts = Math.random().toString(36).slice(-6);
 					var image = new Image();
