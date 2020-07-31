@@ -29,7 +29,7 @@
 	</head>
 
 	<body>
-		<p>Version <span>20.731.1356</span></p>
+		<p>Version <span>20.731.1402</span></p>
 		<textarea name="" id="output" cols="30" rows="20">
 		</textarea>
 		<script>
@@ -57,6 +57,10 @@
 				},
 				performance: function () {
 					return 'performance' in window;
+				},
+				cookie: function () {
+					document.cookie = '__testcookie__=test';
+					return navigator.cookieEnabled !== undefined && document.cookie.indexOf('__testcookie__=test') !== -1;
 				}
 			};
 			var request = function (option) {
