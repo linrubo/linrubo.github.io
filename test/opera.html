@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-		<h1>20.731.1446</h1>
+		<h1>20.731.1448</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -74,7 +74,7 @@
 				xhr.send();
 			};
 
-			document.querySelector('p').addEventListener('click', function (event) {
+			document.querySelector('h1').addEventListener('click', function (event) {
 				var result = {};
 				Object.keys(features).forEach(function (key) {
 					try {
@@ -84,6 +84,7 @@
 					}
 				});
 				output.innerHTML = JSON.stringify(result, null, 4);
+				event.preventDefault();
 			}, false);
 
 			output.innerHTML = navigator.userAgent;
