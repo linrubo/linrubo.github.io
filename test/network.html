@@ -24,7 +24,7 @@
 	</head>
 
 	<body>
-		<h1>20.730.1921</h1>
+		<h1>20.731.1009</h1>
 		<textarea name="" id="output" cols="30" rows="25"></textarea>
 		<button>Start</button>
 		<script>
@@ -96,6 +96,10 @@
 				output.innerHTML += '\n';
 				output.innerHTML += JSON.stringify(result, null, 4);
 			};
+
+			window.addEventListener('error', function (event) {
+				alert(event);
+			}, false);
 
 			document.querySelector('button').addEventListener('click', function () {
 				list.forEach(function (item, index) {
