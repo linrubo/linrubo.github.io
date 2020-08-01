@@ -26,7 +26,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.1501</h1>
+		<h1>20.801.1505</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var timing = {};
@@ -48,7 +48,7 @@
 				url: '/route/a.html',
 				success: function (response) {
 					timing.end = Date.now();
-					timing.offset = Math.round((timing.end = timing.start) / 1000);
+					timing.offset = Math.round((timing.end - timing.start) / 1000);
 					output.innerHTML = JSON.stringify(timing, null, 4);
 					output.innerHTML += '\n';
 					output.innerHTML += response;
