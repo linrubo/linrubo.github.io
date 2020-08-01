@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<title>timer test</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+			h1 {
+				text-align: center;
+			}
+			#output {
+				display: block;
+				width: 90%;
+				margin: 1em auto;
+				border: 1px solid #000;
+				background: #eee;
+				font-size: inherit;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>20.801.1113</h1>
+		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<script>
+			var timer = null;
+			var count = 0;
+			var text = [];
+			var output = document.querySelector('#output');
+
+			setTimeout(function () {
+				alert('setTimeout 5s');
+			}, 5000);
+			setTimeout(function () {
+				alert('setTimeout 6s');
+			}, 6000);
+			timer = setInterval(function () {
+				count += 1;
+				text.push(text);
+				output.innerHTML = text.join();
+				if (count >= 10) {
+					clearInterval(timer);
+				}
+			}, 1000);
+		</script>
+	</body>
+</html>
