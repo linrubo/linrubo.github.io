@@ -26,14 +26,14 @@
 	</head>
 
 	<body>
-		<h1>20.801.1253</h1>
+		<h1>20.801.1256</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var timer = null;
 			var count = 0;
 			var output = document.querySelector('#output');
 
-			function timeout(state) {
+			function timeout() {
 				setTimeout(function () {
 					output.innerHTML += 'setTimeout 5s.\n';
 				}, 5000);
@@ -48,13 +48,6 @@
 						output.innerHTML += 'setTimeout 3+4s.\n';
 					}, 4000);
 				}, 3000);
-
-				if (state) {
-					document.body.addEventListener('click', function (event) {
-						output.innerHTML = 'event type: ' + event.type + '.\n';
-						timeout();
-					}, false);
-				}
 			}
 
 			function interval() {
@@ -67,8 +60,15 @@
 				}, 1000);
 			}
 
-			timeout(true);
+			timeout();
 			// interval();
+
+			document.body.addEventListener('click', function (event) {
+				output.innerHTML = 'event type: ' + event.type + '.\n';
+				timeout();
+				// interval();
+				event.preventDefault();
+			}, false);
 		</script>
 	</body>
 </html>
