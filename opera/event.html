@@ -26,7 +26,8 @@
 	</head>
 
 	<body>
-		<h1>20.801.1050</h1>
+		<h1>20.801.1603</h1>
+		<textarea name="" id="output" cols="30" rows="10"></textarea>
 		<ul>
 			<li><a href="#">link001</a></li>
 			<li><a href="#">link002</a></li>
@@ -35,8 +36,23 @@
 			<li><a href="#">link005</a></li>
 		</ul>
 		<script>
+			var output = document.querySelector('#output');
 			document.addEventListener('click', function (event) {
-				alert(event.target.tagName.toLowerCase());
+				var result = {};
+				var list = ["NONE","CAPTURING_PHASE","AT_TARGET",
+				"BUBBLING_PHASE","bubbles","cancelable","composed",
+				"currentTarget","defaultPrevented","eventPhase",
+				"isTrusted","target","timeStamp","type","composedPath",
+				"preventDefault","stopImmediatePropagation","stopPropagation"];
+
+				list.forEach(function (item) {
+					result[item] = item in event;
+				});
+
+				output.innerHTML = event.target.tagName.toLowerCase();
+				output.innerHTML += '\n';
+				output.innerHTML += JSON.stringify(result, null, 4);
+
 				event.preventDefault();
 			}, false);
 		</script>
