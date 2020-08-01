@@ -26,10 +26,14 @@
 	</head>
 
 	<body>
-		<h1>20.801.1505</h1>
+		<h1>20.801.1707</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var timing = {};
+			var support = {};
+			var keys =  ["timeout", "upload", "withCredentials", "onerror",
+			"onloadend", "onloadstart", "onprogress", "ontimeout"];
+
 			var request = function (option) {
 				var xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function () {
@@ -43,17 +47,25 @@
 				xhr.send();
 			};
 
-			timing.start = Date.now();
-			request({
-				url: '/route/a.html',
-				success: function (response) {
-					timing.end = Date.now();
-					timing.offset = Math.round((timing.end - timing.start) / 1000);
-					output.innerHTML = JSON.stringify(timing, null, 4);
-					output.innerHTML += '\n';
-					output.innerHTML += response;
-				}
-			});
+			keys.forEach(function (key) {
+				support[key] = key in this
+			}, (new XMLHttpRequest()));
+			output.innerHTML = JSON.stringify(support, null, 4);
+
+
+			document.querySelector('h1').addEventListener('click', function (event) {
+				timing.start = Date.now();
+				request({
+					url: '/route/a.html',
+					success: function (response) {
+						timing.end = Date.now();
+						timing.offset = Math.round((timing.end - timing.start) / 1000);
+						output.innerHTML = JSON.stringify(timing, null, 4);
+						output.innerHTML += '\n';
+						output.innerHTML += response;
+					}
+				});
+			}, false);
 		</script>
 	</body>
 </html>
