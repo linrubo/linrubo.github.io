@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CSS Test</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body {
+				margin: 0;
+				background: #ccc;
+			}
+			h1 {
+				text-align: center;
+			}
+			ul {
+				position: relative;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			ul::after {
+				content: 'New';
+				position: absolute;
+				top: 0;
+				right: 0.5em;
+				color: red;
+			}
+			li {
+				padding: 0.5em;
+				margin: 0 0.5em;
+			}
+			li:nth-child(2n) {
+				background: rgba(255, 255, 255, 0.5);
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>20.801.1752</h1>
+		<ul>
+			<li>item-001</li>
+			<li>item-002</li>
+			<li>item-003</li>
+			<li>item-004</li>
+			<li>item-005</li>
+		</ul>
+	</body>
+</html>
