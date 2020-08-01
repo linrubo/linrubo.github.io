@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.1137</h1>
+		<h1>20.801.1140</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var timer = null;
@@ -34,15 +34,15 @@
 			var output = document.querySelector('#output');
 
 			setTimeout(function () {
-				alert('setTimeout 5s');
+				output.innerHTML += 'setTimeout 5s.\n';
 			}, 5000);
 			setTimeout(function () {
-				alert('setTimeout 6s');
+				output.innerHTML += 'setTimeout 6s.\n';
 			}, 6000);
 			setTimeout(function () {
-				alert('setTimeout 2s');
+				output.innerHTML += 'setTimeout 2s.\n';
 				setTimeout(function () {
-					alert('inner setTimeout 2s');
+					output.innerHTML += 'inner setTimeout 2s.\n';
 				}, 2000);
 			}, 2000);
 
@@ -55,15 +55,6 @@
 					clearInterval(timer);
 				}
 			}, 1000);
-			*/
-
-			/*
-			document.body.addEventListener('click', function (event) {
-				alert(event.type);
-				setTimeout(function () {
-					alert('click after 5s');
-				}, 5000);
-			}, false);
 			*/
 		</script>
 	</body>
