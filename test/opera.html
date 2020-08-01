@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.1449</h1>
+		<h1>20.801.1502</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -64,18 +64,6 @@
 					return 'postMessage' in window;
 				}
 			};
-			var request = function (option) {
-				var xhr = new XMLHttpRequest();
-				xhr.onreadystatechange = function () {
-					if (xhr.readyState === 4) {
-						if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-							option.success(xhr.responseText);
-						}
-					}
-				};
-				xhr.open('GET', option.url, true);
-				xhr.send();
-			};
 
 			document.querySelector('h1').addEventListener('click', function (event) {
 				var result = {};
@@ -91,24 +79,6 @@
 			}, false);
 
 			output.innerHTML = navigator.userAgent;
-
-			setTimeout(function () {
-				request({
-					url: '/route/a.html',
-					success: function (response) {
-						output.innerHTML = response;
-					}
-				});
-			}, 5000);
-
-			var count = 0;
-			var timer = setInterval(function () {
-				output.style['background'] = '#' + Math.random().toString(16).slice(-6);
-				count += 1;
-				if (count >= 10) {
-					clearInterval(timer);
-				}
-			}, 17);
 		</script>
 	</body>
 </html>
