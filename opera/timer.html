@@ -26,7 +26,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.1256</h1>
+		<h1>20.801.1300</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var timer = null;
@@ -60,13 +60,13 @@
 				}, 1000);
 			}
 
-			timeout();
-			// interval();
+			// timeout();
+			interval();
 
 			document.body.addEventListener('click', function (event) {
 				output.innerHTML = 'event type: ' + event.type + '.\n';
-				timeout();
-				// interval();
+				// timeout();
+				interval();
 				event.preventDefault();
 			}, false);
 		</script>
