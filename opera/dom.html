@@ -26,7 +26,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.1640</h1>
+		<h1>20.801.1647</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -34,9 +34,12 @@
 
 			var element = ["childElementCount", "children", "firstElementChild",
 			"lastElementChild", "nextElementSibling", "previousElementSibling",
-			"attributes", "classList", "closest", "matches", "toggleAttribute"];
+			"replaceWith", "attributes", "classList", "className", "id", "tagName",
+			"closest", "getAttributeNames", "matches", "toggleAttribute"];
+
 			var node = ["childNodes", "firstChild", "lastChild", "nextSibling",
-			"previousSibling", "parentElement", "parentNode"];
+			"previousSibling", "nodeName", "nodeType", "nodeValue", "ownerDocument",
+			"parentElement", "parentNode", "textContent"];
 
 			element.forEach(function (key) {
 				result[key] = key in output;
