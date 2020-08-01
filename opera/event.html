@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<title>event test</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	</head>
+
+	<body>
+		<h1>20.801.1038</h1>
+		<ul>
+			<li><a href="#">link001</a></li>
+			<li><a href="#">link002</a></li>
+			<li><a href="#">link003</a></li>
+			<li><a href="#">link004</a></li>
+			<li><a href="#">link005</a></li>
+		</ul>
+		<script>
+			document.addEventListener('click', function (event) {
+				alert(event.target.tagName.toLowerCase());
+				event.preventDefault();
+			}, false);
+		</script>
+	</body>
+</html>
