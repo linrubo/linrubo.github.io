@@ -26,7 +26,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.0952</h1>
+		<h1>20.801.0954</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -92,7 +92,7 @@
 			request({
 				url: '/route/a.html',
 				success: function (response) {
-					alert(response);
+					output.innerHTML = response;
 				}
 			});
 		</script>
