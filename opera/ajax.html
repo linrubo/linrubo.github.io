@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<title>ajax test</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body {
+				margin: 0;
+				cursor: pointer;
+			}
+			h1 {
+				text-align: center;
+			}
+			#output {
+				display: block;
+				width: 90%;
+				margin: 1em auto;
+				border: 1px solid #000;
+				background: #eee;
+				font-size: inherit;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>20.801.1501</h1>
+		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<script>
+			var timing = {};
+			var request = function (option) {
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4) {
+						if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+							option.success(xhr.responseText);
+						}
+					}
+				};
+				xhr.open('GET', option.url, true);
+				xhr.send();
+			};
+
+			timing.start = Date.now();
+			request({
+				url: '/route/a.html',
+				success: function (response) {
+					timing.end = Date.now();
+					timing.offset = Math.round((timing.end = timing.start) / 1000);
+					output.innerHTML = JSON.stringify(timing, null, 4);
+					output.innerHTML += '\n';
+					output.innerHTML += response;
+				}
+			});
+		</script>
+	</body>
+</html>
