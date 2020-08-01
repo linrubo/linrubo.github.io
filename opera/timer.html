@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.1113</h1>
+		<h1>20.801.1115</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var timer = null;
@@ -41,7 +41,7 @@
 			}, 6000);
 			timer = setInterval(function () {
 				count += 1;
-				text.push(text);
+				text.push(count);
 				output.innerHTML = text.join();
 				if (count >= 10) {
 					clearInterval(timer);
