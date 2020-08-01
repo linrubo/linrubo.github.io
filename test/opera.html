@@ -26,7 +26,7 @@
 	</head>
 
 	<body>
-		<h1>20.801.1008</h1>
+		<h1>20.801.1015</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -97,7 +97,16 @@
 						output.innerHTML = response;
 					}
 				});
-			}, 6000);
+			}, 5000);
+
+			var count = 0;
+			var timer = setInterval(function () {
+				output.style['border-color'] = '#' + Math.random().toString(16).slice(-6);
+				count += 1;
+				if (count >= 10) {
+					clearInterval(timer);
+				}
+			}, 1000);
 		</script>
 	</body>
 </html>
