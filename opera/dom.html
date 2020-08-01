@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<title>DOM test</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body {
+				margin: 0;
+				cursor: pointer;
+			}
+			h1 {
+				text-align: center;
+			}
+			#output {
+				display: block;
+				width: 90%;
+				margin: 1em auto;
+				border: 1px solid #000;
+				background: #eee;
+				font-size: inherit;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>20.801.1637</h1>
+		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<script>
+			var output = document.querySelector('#output');
+			var result = {};
+
+			var element = ["childElementCount", "children", "firstElementChild",
+			"lastElementChild", "nextElementSibling", "previousElementSibling",
+			"attributes", "classList", "closet", "matches", "toggleAttribute"];
+			var node = ["childNodes", "firstChild", "lastChild", "nextSibling",
+			"previousSibling", "parentElement", "parentNode"];
+
+			element.forEach(function (key) {
+				result[key] = key in output;
+			});
+			node.forEach(function (key) {
+				result[key] = key in output;
+			});
+
+			output.innerHTML = JSON.stringify(result, null, 4);
+		</script>
+	</body>
+</html>
