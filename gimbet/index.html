@@ -13,16 +13,39 @@
 			}
 			body {
 				font-size: 12px;
-				background: #333;
+				background: #666;
 				color: #eee;
+			}
+			a {
+				color: #eee;
+				text-decoration: none;
+			}
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
 			}
 			#app {
 				width: 100rem;
 				margin: 0 auto;
-				background: #666;
+				background: #333;
 			}
-			h1::after {
-				content: '-20.803.1636';
+			header {
+				position: relative;
+			}
+			header h1 {
+				margin: 0;
+				padding: 0.5em 0;
+				font-size: 2em;
+				line-height: 1em;
+			}
+			header h1::after {
+				content: '-20.803.1658';
+			}
+			header .search {
+				position: absolute;
+				top: 1.33em;
+				right: 1em;
 			}
 			footer {
 				position: fixed;
@@ -56,7 +79,7 @@
 		<div id="app">
 			<header>
 				<h1>Gimbet</h1>
-				<a href="/serach">搜索</a>
+				<a href="/search" class="search">搜索</a>
 			</header>
 			<nav>
 				<ul>
