@@ -29,6 +29,7 @@
 				width: 100rem;
 				margin: 0 auto;
 				background: #333;
+				overflow: hidden;
 			}
 
 			header {
@@ -49,14 +50,49 @@
 			.navigation ul {
 				width: 100%;
 				display: flex;
-				flex-direction: row;
 				overflow: auto;
 			}
 			.navigation ul li {
 				flex: 1;
-				padding: 2em 0.5em 1em;
+				padding: 4em 0.5em 1em;
 				word-break: keep-all;
 				white-space: nowrap;
+			}
+
+			.featured h3 {
+				font-size: 1em;
+				margin: 1em 0;
+			}
+			.featured-box {
+				width: 100%;
+				display: flex;
+				overflow: auto;
+				box-sizing: border-box;
+			}
+			.featured-box::before {
+				content: '...';
+				display: block;
+				width: 0.5em;
+				opacity: 0;
+			}
+			.featured-box::after {
+				content: '...';
+				display: block;
+				width: 0.5em;
+				opacity: 0;
+			}
+			.featured-item {
+				flex: 1;
+				width: 90rem;
+				margin: 0 0.5em;
+				padding: 1em;
+				border: 1px solid;
+			}
+			.featured-item * {
+				white-space: nowrap;
+			}
+			.featured-item .game_id {
+				float: right;
 			}
 
 			footer {
@@ -117,6 +153,28 @@
 			<div class="featured">
 				<h3>Featured Match</h3>
 				<div class="featured-box">
+					<div class="featured-item">
+						<p><span class="time">06/08/2020 00:55</span><span class="game_id">Game ID:3632</span></p>
+						<p>International Clubs UEFA Europa League</p>
+						<p>FC Shakhtar Donetsk</p>
+						<p>VfL Wolfsburg</p>
+						<ul class="market">
+							<li><span class="tag">Home</span><span class="odds">2.3</span></li>
+							<li><span class="tag">Draw</span><span class="odds">3.65</span></li>
+							<li><span class="tag">Away</span><span class="odds">3.1</span></li>
+						</ul>
+					</div>
+					<div class="featured-item">
+						<p><span class="time">06/08/2020 00:55</span><span class="game_id">Game ID:3632</span></p>
+						<p>International Clubs UEFA Europa League</p>
+						<p>FC Shakhtar Donetsk</p>
+						<p>VfL Wolfsburg</p>
+						<ul class="market">
+							<li><span class="tag">Home</span><span class="odds">2.3</span></li>
+							<li><span class="tag">Draw</span><span class="odds">3.65</span></li>
+							<li><span class="tag">Away</span><span class="odds">3.1</span></li>
+						</ul>
+					</div>
 					<div class="featured-item">
 						<p><span class="time">06/08/2020 00:55</span><span class="game_id">Game ID:3632</span></p>
 						<p>International Clubs UEFA Europa League</p>
