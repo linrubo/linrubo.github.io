@@ -26,13 +26,17 @@
 	</head>
 
 	<body>
-		<h1>20.803.1331</h1>
+		<h1>20.803.1333</h1>
 		<script>
 			var root = document.documentElement;
+			var h1 = document.querySelector('h1');
 			var clientWidth = root.clientWidth;
 			var fontSize = clientWidth / 100 + 'px';
 			root.style['font-size'] = fontSize;
 			alert([root, clientWidth, fontSize]);
+			setTimeout(function () {
+				alert(h1.offsetHeight);
+			}, 1000);
 		</script>
 	</body>
 </html>
