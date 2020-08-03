@@ -10,10 +10,11 @@
 			body {
 				margin: 0;
 				padding: 0;
+				font-size: 10px;
 			}
 			h1 {
-				width: 10rem;
-				height: 5rem;
+				width: 100rem;
+				height: 50rem;
 				margin: 0;
 				text-align: center;
 				background: #ccc;
@@ -22,11 +23,11 @@
 	</head>
 
 	<body>
-		<h1>20.803.1254</h1>
+		<h1>20.803.1257</h1>
 		<script>
 			var root = document.documentElement;
 			var clientWidth = root.clientWidth;
-			var fontSize = clientWidth / 10 + 'px';
+			var fontSize = clientWidth / 100 + 'px';
 			root.style['font-size'] = fontSize;
 			alert([root, clientWidth, fontSize]);
 		</script>
