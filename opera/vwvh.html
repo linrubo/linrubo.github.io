@@ -10,11 +10,6 @@
 			html {
 				font-size: 3.2px;
 			}
-			@media all and (min-width: 360) {
-				html {
-					font-size: 3.6px;
-				}
-			}
 			body {
 				margin: 0;
 				padding: 0;
@@ -31,12 +26,13 @@
 	</head>
 
 	<body>
-		<h1>20.803.1403</h1>
+		<h1>20.803.1508</h1>
 		<script>
 			var root = document.documentElement;
 			var h1 = document.querySelector('h1');
 			var clientWidth = root.clientWidth;
 			var fontSize = clientWidth / 100 + 'px';
+			root.style['font-size'] = fontSize;
 
 			alert([root, clientWidth, fontSize, h1.offsetHeight]);
 		</script>
