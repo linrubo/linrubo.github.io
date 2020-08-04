@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<title>cookie test</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body {
+				margin: 0;
+				cursor: pointer;
+			}
+			h1 {
+				text-align: center;
+			}
+			#output {
+				display: block;
+				width: 90%;
+				margin: 1em auto;
+				border: 1px solid #000;
+				background: #eee;
+				font-size: inherit;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>20.804.1120</h1>
+		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<script>
+			var	output = document.querySelector('#output');
+			var title = document.querySelector('h1');
+
+			output.innerHTML = document.cookie;
+
+			title.addEventListener('click', function (event) {
+				document.cookie = 'name=demon;max-age=86400';
+				event.preventDefault();
+			}, false);
+		</script>
+	</body>
+</html>
