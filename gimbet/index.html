@@ -44,9 +44,10 @@
 			}
 
 			#app {
-				width: 100rem;
+				width: 100%;
+				max-width: 450px;
 				margin: 0 auto;
-				padding-bottom: 12.5rem;
+				padding-bottom: 3.33em;
 				background: #1f2033;
 				overflow: hidden;
 			}
@@ -67,7 +68,6 @@
 			}
 
 			.navigation ul {
-				width: 100%;
 				display: flex;
 				overflow: auto;
 			}
@@ -101,7 +101,7 @@
 			}
 			.featured-box .market-cards-item {
 				flex: 1 0 auto;
-				width: 80rem;
+				width: 80%;
 				margin: 0 0.5em;
 				border: 1px solid;
 				background: #6c482a;
@@ -142,12 +142,12 @@
 			}
 
 			.market-cards-item {
-				padding: 3.125rem;
-				margin: 3.125rem;
+				padding: 10px;
+				margin: 10px;
 				background: #2b2d3f;
 			}
 			.market-cards-item > div {
-				margin: 3.125rem 0;
+				margin: 10px 0;
 			}
 			.market-cards-item > div:first-child {
 				margin-top: 0;
@@ -159,15 +159,15 @@
 				position: relative;
 			}
 			.market-cards-item .info p + p {
-				margin: 3.125rem 0;
+				margin: 10px 0;
 			}
 			.market-cards-item .markets {
-				padding: 3.125rem;
-				margin: 0 -3.125rem;
+				padding: 10px;
+				margin: 0 -10px;
 				background: #6c482a;
 			}
 			.market-cards-item .markets p {
-				margin: 0 0 3.125rem;
+				margin: 0 0 10px;
 			}
 			.market-cards-item .game_id {
 				float: right;
@@ -193,11 +193,10 @@
 			}
 
 			footer {
-				position: absolute;
 				position: fixed;
-				right: 0;
 				bottom: 0;
-				left: 0;
+				width: 100%;
+				max-width: 450px;
 			}
 			footer ul {
 				display: flex;
@@ -207,7 +206,7 @@
 			}
 			footer a {
 				display: block;
-				padding: 12px 0;
+				padding: 1em 0;
 				text-align: center;
 				color: #fff;
 				background: #2b2d3f;
@@ -219,7 +218,7 @@
 	</head>
 
 	<body>
-		<div class="version">20.804.1521</div>
+		<div class="version">20.805.1032</div>
 		<div id="app">
 			<header>
 				<h1>Gimbet</h1>
