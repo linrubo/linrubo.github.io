@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<title>market-box</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body {
+				margin: 0;
+				font-size: 14px;
+			}
+			.market {
+				margin: 10px;
+			}
+			.market ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.market li {
+				flex: 1 0 0;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				margin: 2px;
+				padding: 2px;
+				background: #ccc;
+			}
+			.market li span {
+				flex: 1 0 50%;
+				text-align: center;
+				white-space: nowrap;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="market-box">
+			<div class="market">
+				<h3>1x2</h3>
+				<ul>
+					<li><span>Home</span><span>1.25</span></li>
+					<li><span>Draw</span><span>5.74</span></li>
+					<li><span>Away</span><span>10.36</span></li>
+				</ul>
+			</div>
+			<div class="market">
+				<h3>To qualify</h3>
+				<ul>
+					<li><span>Home</span><span>1.1</span></li>
+					<li><span>Away</span><span>10.94</span></li>
+				</ul>
+			</div>
+			<div class="market">
+				<h3> Winning method</h3>
+				<ul>
+					<li><span>Home Regular Time</span><span>1.25</span></li>
+					<li><span>Away Regular Time</span><span>10.2</span></li>
+					<li><span>Home Overtime</span><span>10.9</span></li>
+					<li><span>Away Overtime</span><span>56.1</span></li>
+					<li><span>Home Penalties</span><span>25.71</span></li>
+					<li><span>Away Penalties</span><span>31.39</span></li>
+				</ul>
+			</div>
+			<div class="market">
+				<h3>Double Chance</h3>
+				<ul>
+					<li><span>Home or Draw</span><span>1.06</span></li>
+					<li><span>Draw or Away</span><span>1.11</span></li>
+					<li><span>Draw or Away</span><span>3.15</span></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
