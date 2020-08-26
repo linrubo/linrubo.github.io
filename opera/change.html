@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Document</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	</head>
+
+	<body>
+		<input type="number" name="amount" id="">
+		<script>
+			document.querySelector('input[name=amount]').addEventListener('change', function (event) {
+				var target = event.target;
+				alert([event.type, target.value]);
+			});
+		</script>
+	</body>
+</html>
