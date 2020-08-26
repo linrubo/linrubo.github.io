@@ -11,10 +11,13 @@
 	<body>
 		<input type="number" name="amount" id="">
 		<script>
-			document.querySelector('input[name=amount]').addEventListener('change', function (event) {
-				var target = event.target;
-				alert([event.type, target.value]);
-			});
+			var handler = function (event) {
+				alert(event.type);
+			};
+			document.querySelector('input[name=amount]').addEventListener('focus', handler);
+			document.querySelector('input[name=amount]').addEventListener('click', handler);
+			document.querySelector('input[name=amount]').addEventListener('change', handler);
+			document.querySelector('input[name=amount]').addEventListener('blur', handler);
 		</script>
 	</body>
 </html>
