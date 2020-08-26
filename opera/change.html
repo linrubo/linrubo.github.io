@@ -22,6 +22,7 @@
 
 	<body>
 		<input type="number" name="amount" id="">
+		<button type="button">Random</button>
 		<ul id="output"></ul>
 		<script>
 			var output = document.querySelector('#output');
@@ -35,9 +36,9 @@
 			document.querySelector('input[name=amount]').addEventListener('click', handler);
 			document.querySelector('input[name=amount]').addEventListener('change', handler);
 			document.querySelector('input[name=amount]').addEventListener('blur', handler);
-			setTimeout(function () {
-				document.querySelector('input[name=amount]').value = 100;
-			}, 4000)
+			document.querySelector('button').addEventListener('click', function () {
+				document.querySelector('input[name=amount]').value = Math.floor(Math.random() * 100 + 100);
+			});
 		</script>
 	</body>
 </html>
