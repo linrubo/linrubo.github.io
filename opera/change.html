@@ -7,6 +7,9 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<style type="text/css">
+			body {
+				cursor: pointer;
+			}
 			input {
 				border: 1px solid #000;
 				outline: 0 none;
@@ -28,13 +31,10 @@
 				li.innerText = [event.type, target.value].join();
 				output.appendChild(li);
 			};
-			/*
 			document.querySelector('input[name=amount]').addEventListener('focus', handler);
 			document.querySelector('input[name=amount]').addEventListener('click', handler);
 			document.querySelector('input[name=amount]').addEventListener('change', handler);
 			document.querySelector('input[name=amount]').addEventListener('blur', handler);
-			*/
-			document.addEventListener('change', handler);
 		</script>
 	</body>
 </html>
