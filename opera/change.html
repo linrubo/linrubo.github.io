@@ -35,6 +35,9 @@
 			document.querySelector('input[name=amount]').addEventListener('click', handler);
 			document.querySelector('input[name=amount]').addEventListener('change', handler);
 			document.querySelector('input[name=amount]').addEventListener('blur', handler);
+			setTimeout(function () {
+				document.querySelector('input[name=amount]').value = 100;
+			}, 4000)
 		</script>
 	</body>
 </html>
