@@ -6,13 +6,27 @@
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			input {
+				border: 1px solid #000;
+				outline: 0 none;
+				padding: 0;
+				height: 2em;
+				font-size: 1.2em;
+			}
+		</style>
 	</head>
 
 	<body>
 		<input type="number" name="amount" id="">
+		<ul id="output"></ul>
 		<script>
+			var output = document.querySelector('#output');
 			var handler = function (event) {
-				alert(event.type);
+				var target = event.target;
+				var li = document.createElement('li');
+				li.innerText = [event.type, target.value].join();
+				output.appendChild(li);
 			};
 			document.querySelector('input[name=amount]').addEventListener('focus', handler);
 			document.querySelector('input[name=amount]').addEventListener('click', handler);
