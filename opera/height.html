@@ -10,6 +10,7 @@
 			body {
 				margin: 0;
 				padding: 0;
+				color: #eee;
 				background: #333;
 			}
 			input {
@@ -18,13 +19,18 @@
 				height: 2em;
 				margin: 10px;
 				font: inherit;
-				color: #eee;
+				color: inherit;
 				background: transparent;
+			}
+			@media only screen and (min-height: 300px) {
+				body {
+					color: red;
+				}
 			}
 		</style>
 	</head>
 
 	<body>
-		<input type="text">
+		<input type="text" name="" id=""><label for="">Name</label>
 	</body>
 </html>
