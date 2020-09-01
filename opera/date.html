@@ -9,8 +9,14 @@
 	</head>
 
 	<body>
+		<textarea name="" id="output" cols="30" rows="10"></textarea>
 		<script>
-			alert(new Date(2020, 7, 31).getTime() / 1000);
+			var date = new Date(2020, 6, 30);
+			var result = {
+				timeZone: date.getTimezoneOffset(),
+				string: date.toString()
+			};
+			document.querySelector('#output').value = JSON.stringify(result, null, 4);
 		</script>
 	</body>
 </html>
