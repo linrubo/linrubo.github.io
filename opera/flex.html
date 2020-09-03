@@ -16,13 +16,13 @@
 				padding: 0;
 			}
 			ul li,
-			div {
+			.box {
 				display: flex;
 			}
-			span {
-				display: inline-block;
-			}
 			.name {
+				flex: 1;
+			}
+			.name span{
 				max-width: 18em;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -37,9 +37,12 @@
 
 	<body>
 		<ul>
-			<li><span class="name">International Clubs UEFA Europa LeagueInternational Clubs UEFA Europa League</span><span class="count">0</span></li>
-			<li><span class="name">International Clubs UEFA Europa LeagueInternational Clubs UEFA Europa League</span><span class="count">0</span></li>
+			<li><div class="name"><span>International Clubs UEFA Europa LeagueInternational Clubs UEFA Europa League</span></div><span class="count">0</span></li>
+			<li><div class="name"><span>International Clubs UEFA Europa LeagueInternational Clubs UEFA Europa League</span></div><span class="count">0</span></li>
 		</ul>
-		<div><div><span class="name">International Clubs UEFA Europa LeagueInternational Clubs UEFA Europa League</span></div><span class="count">0</span></div>
+		<div class="box">
+			<div class="name"><span>International Clubs UEFA Europa LeagueInternational Clubs UEFA Europa League</span></div>
+			<span class="count">0</span>
+		</div>
 	</body>
 </html>
