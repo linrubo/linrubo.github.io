@@ -25,14 +25,24 @@
 	</head>
 
 	<body>
-		<h1>20.801.1508</h1>
+		<h1>20.907.1537</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
 
 			var features = {
+				es6: function () {
+					return 'Promise' in window;
+				},
 				ajax: function () {
 					return 'XMLHttpRequest' in window;
+				},
+				fetch: function () {
+					return 'fetch' in window;
+				},
+				cookie: function () {
+					document.cookie = '__testcookie__=test';
+					return navigator.cookieEnabled !== undefined && document.cookie.indexOf('__testcookie__=test') !== -1;
 				},
 				storage: function () {
 					localStorage.setItem('name', 'demon');
@@ -41,21 +51,11 @@
 				history: function () {
 					return 'pushState' in history && 'replaceState' in history;
 				},
-				fetch: function () {
-					return 'fetch' in window;
-				},
-				es6: function () {
-					return 'Promise' in window;
-				},
 				network: function () {
 					return 'connection' in navigator;
 				},
 				performance: function () {
 					return 'performance' in window;
-				},
-				cookie: function () {
-					document.cookie = '__testcookie__=test';
-					return navigator.cookieEnabled !== undefined && document.cookie.indexOf('__testcookie__=test') !== -1;
 				},
 				sniff: function () {
 					return Object.prototype.toString.call(window.operamini) === "[object OperaMini]"
@@ -66,6 +66,15 @@
 					}, false);
 					top.postMessage('hello', '*');
 					return 'postMessage' in window;
+				},
+				webSocket: function () {
+					return 'WebSocket' in window;
+				},
+				'CSS-fixed': function () {
+					return CSS.supports('position', 'fixed');
+				},
+				'CSS-sticky': function () {
+					return CSS.supports('position', 'sticky');
 				}
 			};
 
