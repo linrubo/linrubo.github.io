@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>opera</title>
+		<title>Opera Mini 功能检测</title>
 		<meta charset="utf-8">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-		<h1>20.907.1537</h1>
+		<h1>20.907.1646</h1>
 		<textarea name="" id="output" cols="30" rows="20"></textarea>
 		<script>
 			var output = document.querySelector('#output');
@@ -57,7 +57,7 @@
 				performance: function () {
 					return 'performance' in window;
 				},
-				sniff: function () {
+				operaMini: function () {
 					return Object.prototype.toString.call(window.operamini) === "[object OperaMini]"
 				},
 				postMessage: function () {
