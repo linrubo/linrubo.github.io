@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Network</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			body {
+				margin: 0;
+			}
+			h1 {
+				text-align: center;
+			}
+			#output {
+				display: block;
+				width: 90%;
+				margin: 1em auto;
+				border: 1px solid #000;
+				background: #eee;
+				font-size: inherit;
+			}
+			.button {
+				width: 6em;
+				margin: 1em auto;
+				padding: 0.5em 0;
+				font-size: 1.2em;
+				text-align: center;
+				border: 1px solid #000
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>20.731.1444</h1>
+		<textarea name="" id="output" cols="30" rows="20"></textarea>
+		<div class="button">Start</div>
+		<script>
+			// reference https://wicg.github.io/netinfo/
+			var output = document.querySelector('#output');
+			var size = Math.round(2090391 / 1024);
+			var flags = [
+				'DNS+Connection+RTT',
+				'Connection+RTT',
+				'RTT',
+				'BandWidth'
+			];
+			var list = [
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.jpg',
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.jpg',
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.jpg',
+				'https://pic3.zhimg.com/v2-d85f4542540fe75e42b0b885924f3630_b.webp'
+			];
+			var types = {
+				'2g': function (rtt, bandwidth) {
+					// 50 > bandwidth < 70
+					return rtt > 1400 && rtt < 2000;
+				},
+				'3g': function (rtt, bandwidth) {
+					// 70 > bandwidth < 700
+					return rtt > 270 && rtt < 1400;
+				},
+				'4g': function (rtt, bandwidth) {
+					// 700 > bandwidth
+					return rtt > 0 && rtt < 270 && bandwidth < 12800;
+				},
+				'wifi': function (rtt, bandwidth) {
+					return rtt > 0 && rtt < 270 && bandwidth > 12800;
+				}
+			};
+
+			var stringify = function (data) {
+				var result = [];
+				var key;
+
+				for (key in data) {
+					if (data.hasOwnProperty(key)) {
+						result.push(key + '=' + encodeURIComponent(data[key]));
+					}
+				}
+
+				return result.join('&');
+			};
+
+			var series = function (queue, data) {
+				var done = null;
+				var state = false;
+
+				var next = function (data) {
+					var handle = queue.shift();
+					if (handle) {
+						handle(next, data);
+					} else {
+						done(data)
+					}
+				};
+
+				state = queue.every(function (item) {
+					return typeof item === 'function';
+				});
+
+				if (state === false) {
+					throw new TypeError('The queue element must all be function.');
+				}
+
+				done = queue.pop();
+				next(data);
+			};
+
+			var analyzer = function (timers) {
+				var rtt = timers[2].duration;
+				var bandwidth = Math.round(size / (timers[3].duration - rtt) * 1000);
+				var result = {};
+
+				result.RTT = rtt;
+				result.BandWidth = bandwidth;
+
+				Object.keys(types).some(function (type) {
+					var state = types[type](rtt, bandwidth);
+					if (state) {
+						result.NetType = type;
+					}
+					return state;
+				});
+
+				return result;
+			};
+
+			var detector = function (callback) {
+				var queue = [];
+
+				list.forEach(function (item, index) {
+					queue.push(function (next, timers) {
+						var ts = Math.random().toString(36).slice(-6);
+						var image = new Image();
+						var timing = timers[index] = {};
+						var params = '';
+
+						timing.flag = flags[index];
+						timing.start = Date.now();
+
+						image.onload = function () {
+							timing.end = Date.now();
+							timing.duration = timing.end - timing.start;
+							next(timers);
+						};
+
+						params = stringify({
+							index: index,
+							flag: timing.flag,
+							ts: ts
+						});
+
+						image.src = item + '?' + params;
+					});
+				});
+
+				queue.push(function (timers) {
+					var result = analyzer(timers);
+					callback(result, timers);
+				});
+
+				series(queue, []);
+			};
+
+			window.addEventListener('error', function (event) {
+				output.innerHTML = event.message;
+			}, false);
+
+			document.querySelector('.button').addEventListener('click', function () {
+				detector(function (result, timers) {
+					output.innerHTML = JSON.stringify(timers, null, 4);
+					output.innerHTML += '\n';
+					output.innerHTML += JSON.stringify(result, null, 4);
+				});
+			}, false);
+		</script>
+	</body>
+</html>
