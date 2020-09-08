@@ -14,7 +14,9 @@
 			var date = new Date(2020, 6, 30);
 			var result = {
 				timeZone: date.getTimezoneOffset(),
-				string: date.toString()
+				string: date.toString(),
+				utc: date.toUTCString(),
+				iso: date.toISOString()
 			};
 			document.querySelector('#output').value = JSON.stringify(result, null, 4);
 		</script>
