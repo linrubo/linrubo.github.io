@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Document</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			.output {
+				width: 300px;
+				float: left;
+				margin: 10px;
+				border: 1px solid #ccc;
+			}
+			.output ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.output li {
+				line-height: 2em;
+			}
+			.output li:nth-child(odd) {
+				background: #ccc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div><button type="button">点我啊</button></div>
+		<div id="result" class="output">
+			<h3>Result</h3>
+			<ul>
+			</ul>
+		</div>
+		<div id="logger" class="output">
+			<h3>Logger</h3>
+			<ul>
+			</ul>
+		</div>
+		<script>
+			var tempo = function (handle, interval) {
+				var locked = false;
+				var queue = [];
+				var timer = null;
+				var next = function () {
+					timer = setInterval(function () {
+						var item = queue.shift();
+						if (item) {
+							handle(item);
+						} else {
+							locked = false;
+							clearInterval(timer);
+						}
+					}, interval)
+				};
+
+				return {
+					push: function (item) {
+						queue.push(item);
+						if (locked === false) {
+							locked = true;
+							next();
+						}
+					}
+				};
+			};
+			var demon = tempo(function (item) {
+				var li = document.createElement('li');
+				li.innerText = item;
+				document.querySelector('#result ul').appendChild(li);
+			}, 1000);
+
+			document.querySelector('button').addEventListener('click', function () {
+				var item = Date.now().toString(36).toUpperCase();
+				var li = document.createElement('li');
+
+				li.innerText = item;
+				document.querySelector('#logger ul').appendChild(li);
+
+				demon.push(item);
+			});
+		</script>
+	</body>
+</html>
