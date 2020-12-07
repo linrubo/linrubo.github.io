@@ -9,24 +9,24 @@
 	</head>
 
 	<body>
+		<div>20.1207.1113</div>
 		<input type="text" name="" />
 		<button type="button">paste</button>
 		<textarea name="" id="" cols="30" rows="10"></textarea>
 		<script>
 			var logger = document.querySelector('textarea');
 			document.querySelector('button').addEventListener('click', function () {
-				logger.value += 'clipboard available: ' + ('clipboard' in navigator) + '\n';
+				//logger.value += 'clipboard available: ' + ('clipboard' in navigator) + '\n';
+				//if ('clipboard' in navigator) {
+				//	navigator.clipboard.readText().then(function(data) {
+				//	  console.log("Your string: ", data);
+				//	  logger.value += 'data: ' + data + '\n';
+				//	  document.querySelector('input').value = data;
+				//	});
+				//}
 
-				if ('clipboard' in navigator) {
-					navigator.clipboard.readText().then(function(data) {
-					  console.log("Your string: ", data);
-					  logger.value += 'data: ' + data + '\n';
-					  document.querySelector('input').value = data;
-					});
-				} else {
-					let state = document.execCommand('paste');
-					logger.value += 'execCommand state: ' + state;
-				}
+				let state = document.execCommand('paste');
+				logger.value += 'execCommand state: ' + state;
 			})
 		</script>
 	</body>
