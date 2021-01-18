@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<title>clipboard</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	</head>
+
+	<body>
+		<div>21.118.0353</div>
+		<input type="text" name="" />
+		<button type="button">copy</button>
+		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<script>
+			var replicator = function (text) {
+				if ('clipboard' in navigator) {
+					logger.value = 'call clipboard api \n';
+					navigator.clipboard.writeText(text).then(() => {
+						logger.value += 'Copy success \n';
+					}).catch(() => {
+						logger.value += 'Copy Oops \n';
+					});
+				} else {
+					logger.value = 'call execCommand api \n';
+					const input = document.createElement('input');
+
+					input.style.cssText = 'position:fixed; top:0; left:-999em';
+					input.value = text;
+					input.setAttribute('readonly', 'readonly');
+					document.body.insertBefore(input, document.body.lastChild);
+
+					input.select();
+					input.setSelectionRange(0, text.length);
+
+					let state = false;
+
+					try {
+						state = document.execCommand('copy');
+					} catch (error) { }
+
+					if (state) {
+						logger.value += 'Copy success \n';
+					} else {
+						logger.value += 'Copy Oops \n';
+					}
+
+					document.body.removeChild(input);
+				}
+			};
+
+			var logger = document.querySelector('textarea');
+
+			document.querySelector('button').addEventListener('click', function () {
+				replicator(document.querySelector('input').value);
+			})
+		</script>
+	</body>
+</html>
