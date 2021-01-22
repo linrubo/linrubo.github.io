@@ -9,11 +9,37 @@
 	</head>
 
 	<body>
-		<div>21.118.0353</div>
+		<div>21.122.0416</div>
 		<input type="text" name="" />
 		<button type="button">copy</button>
 		<textarea name="" id="" cols="30" rows="10"></textarea>
 		<script>
+			var copyCommand = function (text) {
+				logger.value = 'call execCommand api \n';
+				const input = document.createElement('input');
+
+				input.style.cssText = 'position:fixed; top:0; left:-999em';
+				input.value = text;
+				input.setAttribute('readonly', 'readonly');
+				document.body.insertBefore(input, document.body.lastChild);
+
+				input.select();
+				input.setSelectionRange(0, text.length);
+
+				let state = false;
+
+				try {
+					state = document.execCommand('copy');
+				} catch (error) { }
+
+				if (state) {
+					logger.value += 'Copy success \n';
+				} else {
+					logger.value += 'Copy Oops \n';
+				}
+
+				document.body.removeChild(input);
+			};
 			var replicator = function (text) {
 				if ('clipboard' in navigator) {
 					logger.value = 'call clipboard api \n';
@@ -21,32 +47,10 @@
 						logger.value += 'Copy success \n';
 					}).catch(() => {
 						logger.value += 'Copy Oops \n';
+						copyCommand(text);
 					});
 				} else {
-					logger.value = 'call execCommand api \n';
-					const input = document.createElement('input');
-
-					input.style.cssText = 'position:fixed; top:0; left:-999em';
-					input.value = text;
-					input.setAttribute('readonly', 'readonly');
-					document.body.insertBefore(input, document.body.lastChild);
-
-					input.select();
-					input.setSelectionRange(0, text.length);
-
-					let state = false;
-
-					try {
-						state = document.execCommand('copy');
-					} catch (error) { }
-
-					if (state) {
-						logger.value += 'Copy success \n';
-					} else {
-						logger.value += 'Copy Oops \n';
-					}
-
-					document.body.removeChild(input);
+					copyCommand(text);
 				}
 			};
 
