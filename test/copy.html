@@ -9,33 +9,38 @@
 	</head>
 
 	<body>
-		<div>21.122.0443</div>
+		<div>21.122.0447</div>
 		<input type="text" name="" />
 		<input type="text" hidden id="demon" />
 		<button type="button">copy</button>
 		<textarea name="" id="" cols="30" rows="10"></textarea>
 		<script>
 			var copyCommand = function (text) {
-				logger.value += 'call execCommand api \n';
-				//复制
-				var input = document.getElementById('demon');
-				input.value = text; // 修改文本框的内容
-				input.select(); // 选中文本
-				try {
-					var successful = document.execCommand('copy');
-					var msg = successful ? 'successful' : 'unsuccessful';
+				logger.value = 'call execCommand api \n';
+				const input = document.createElement('input');
 
-					if (successful) {
-						logger.value += 'Copy success \n';
-					} else {
-						logger.value += 'Copy Oops \n';
-					}
-				} catch (err) {
+				input.style.cssText = 'position:fixed; top:0; left:-999em';
+				input.value = text;
+				input.setAttribute('readonly', 'readonly');
+				document.body.insertBefore(input, document.body.lastChild);
+
+				input.select();
+				input.setSelectionRange(0, text.length);
+
+				let state = false;
+
+				try {
+					state = document.execCommand('copy');
+				} catch (error) { }
+
+				if (state) {
+					logger.value += 'Copy success \n';
+				} else {
 					logger.value += 'Copy Oops \n';
-					logger.value += err;
 				}
-				document.activeElement.blur();//禁止手机软键盘弹出
-  			};
+
+				document.body.removeChild(input);
+			};
 			var replicator = function (text) {
 				if ('clipboard' in navigator) {
 					/*
