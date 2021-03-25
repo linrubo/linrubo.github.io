@@ -43,7 +43,11 @@
 			import Radix from './radix.js';
 
 			const input = document.querySelector('#input');
-			const output = document.querySelector('#output')
+			const output = document.querySelector('#output');
+
+			if (!'clipboard' in navigator) {
+				document.querySelector('#copy').style.display = 'none';
+			}
 
 			document.addEventListener('click', function (event) {
 				const target = event.target;
@@ -56,10 +60,10 @@
 				}
 				if (target.matches('#copy')) {
 					navigator.clipboard.writeText(output.value).then(() => {
-						alert('复制成功');
+						alert('😁复制成功');
 					}).catch(() => {
-						alert('复制失败');
-					})
+						alert('😭失败了，手动复制下吧');
+					});
 				}
 			});
 		</script>
