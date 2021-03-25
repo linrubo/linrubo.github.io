@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<title>随便说点啥</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style type="text/css">
+			textarea {
+				width: 100%;
+				height: 30vh;
+				padding: 0.5em;
+				font: inherit;
+				box-sizing: border-box;
+			}
+			fieldset {
+				margin: 1em 0;
+				padding: 0;
+				border: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			fieldset button {
+				margin: 0 1em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form action="#">
+			<textarea name="" id="input"></textarea>
+			<fieldset>
+				<button type="button" id="to">我想说</button>
+				<button type="button" id="from">他说啥</button>
+				<button type="button" id="copy">复制输出</button>
+			</fieldset>
+			<textarea name="" id="output"></textarea>
+		</form>
+
+		<script type="module">
+			import Radix from './radix.js';
+
+			const input = document.querySelector('#input');
+			const output = document.querySelector('#output')
+
+			document.addEventListener('click', function (event) {
+				const target = event.target;
+
+				if (target.matches('#from')) {
+					output.value = input.value.split('\ufeff').map(item => String.fromCharCode(Radix.from(item))).join('');
+				}
+				if (target.matches('#to')) {
+					output.value = input.value.split('').map(item => Radix.to(item.charCodeAt())).join('\ufeff');
+				}
+				if (target.matches('#copy')) {
+					navigator.clipboard.writeText(output.value).then(() => {
+						alert('复制成功');
+					}).catch(() => {
+						alert('复制失败');
+					})
+				}
+			});
+		</script>
+	</body>
+</html>
