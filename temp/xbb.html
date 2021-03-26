@@ -45,7 +45,7 @@
 			const input = document.querySelector('#input');
 			const output = document.querySelector('#output');
 
-			if (!'clipboard' in navigator) {
+			if ('clipboard' in navigator === false) {
 				document.querySelector('#copy').style.display = 'none';
 			}
 
